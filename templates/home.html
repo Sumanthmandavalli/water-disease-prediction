@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Source Selection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="water-bg"></div>
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+    <div class="container">
+        <h1 class="main-title">Water Quality Analysis</h1>
+        <div class="cards-container">
+            <div class="card">
+                <div class="water-drop"></div>
+                <div class="card-content">
+                    <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=800&auto=format" alt="Treated Water" class="card-image">
+                    <h2>Treated Water</h2>
+                    <p>Analysis for treated and purified water sources</p>
+                    <div class="card-overlay">
+                        <a href="treated_water" class="btn">Analyze Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="water-drop"></div>
+                <div class="card-content">
+                    <img src="https://images.unsplash.com/photo-1586500036706-41963de24d8b?w=800&auto=format" alt="Natural Water" class="card-image">
+                    <h2>Natural Water</h2>
+                    <p>Analysis for rivers, lakes, and natural sources</p>
+                    <div class="card-overlay">
+                        <a href="natural_water" class="btn">Analyze Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="water-drop"></div>
+                <div class="card-content">
+                    <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=800&auto=format" alt="Managed Water" class="card-image">
+                    <h2>Managed Water</h2>
+                    <p>Analysis for managed water facilities</p>
+                    <div class="card-overlay">
+                        <a href="managed_water" class="btn">Analyze Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

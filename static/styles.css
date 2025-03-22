@@ -1,0 +1,569 @@
+/* Base styles */
+:root {
+    --primary-color: #0066cc;
+    --secondary-color: #004d99;
+    --background-color: #f0f8ff;
+    --text-color: #333;
+    --border-color: #ddd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Water background */
+.water-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+    z-index: -2;
+}
+
+/* Bubbles animation */
+.bubbles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: rise 15s infinite ease-in;
+}
+
+.bubble:nth-child(1) { left: 10%; animation-duration: 12s; }
+.bubble:nth-child(2) { left: 30%; animation-duration: 18s; animation-delay: 1s; }
+.bubble:nth-child(3) { left: 50%; animation-duration: 15s; animation-delay: 3s; }
+.bubble:nth-child(4) { left: 70%; animation-duration: 20s; animation-delay: 2s; }
+.bubble:nth-child(5) { left: 90%; animation-duration: 16s; animation-delay: 4s; }
+
+@keyframes rise {
+    0% {
+        bottom: -100px;
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(100px);
+    }
+    100% {
+        bottom: 100vh;
+        transform: translateX(-100px);
+    }
+}
+
+/* Container styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Title styles */
+.main-title {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Cards container */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Card styles */
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.card h2 {
+    color: var(--primary-color);
+    margin: 1rem 0;
+}
+
+.card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Water drop animation */
+.water-drop {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+@keyframes dropFall {
+    0% {
+        transform: translateY(-100%) scale(1);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(500%) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Form styles */
+.analysis-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 500;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+/* Water line animation */
+.water-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+}
+
+.form-group.focused .water-line {
+    transform: scaleX(1);
+}
+
+/* Button styles */
+.predict-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.predict-btn:hover {
+    background: var(--secondary-color);
+}
+
+/* Ripple effect */
+.ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Results section */
+.results-section {
+    display: none;
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 3rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.results-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.result-item {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.result-item label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.result-item span {
+    display: block;
+    color: #333;
+    font-weight: 500;
+    margin-top: 0.3rem;
+}
+
+.predicted-disease {
+    grid-column: 1 / -1;
+    background: #e3f2fd;
+}
+
+.predicted-disease span {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+/* Back button */
+.back-button {
+    display: inline-block;
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.back-button:hover {
+    color: var(--secondary-color);
+}
+
+/* Water Info Section */
+.water-info-section {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.info-image:hover {
+    transform: scale(1.02);
+}
+
+.info-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.info-content p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.water-facts {
+    list-style: none;
+    padding: 0;
+}
+
+.water-facts li {
+    color: #555;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.water-facts li::before {
+    content: '✓';
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .water-info-section {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .info-image {
+        height: 250px;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .form-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .info-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .water-facts li {
+        font-size: 1rem;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.8rem;
+    }
+
+    .form-title {
+        font-size: 1.8rem;
+    }
+
+    .info-image {
+        height: 200px;
+    }
+
+    .predict-btn {
+        width: 100%;
+    }
+
+    .back-button {
+        font-size: 0.9rem;
+    }
+}
+
+/* Loading Animation */
+.loader {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Error Message */
+.error-message {
+    background: #ff5252;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Form Validation */
+input.error, select.error {
+    border-color: #ff5252;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, #007BFF, #00C6FF);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #0056b3, #0096c7);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Ripple effect */
+.btn::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.4s ease-out;
+}
+
+.btn:active::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+}
+
+/* Add pulse animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 198, 255, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 198, 255, 0.9);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(0, 198, 255, 0.6);
+    }
+}
+
+.btn:hover {
+    animation: pulse 1.5s infinite;
+}

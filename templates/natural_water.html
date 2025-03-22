@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Water Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="water-bg"></div>
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+    <div class="container form-container">
+        <a href="{{ url_for('home') }}" class="back-button">← Back to Home</a>
+        <h1 class="form-title">Natural Water Analysis</h1>
+        <div class="water-info-section">
+            <img src="https://images.unsplash.com/photo-1586500036706-41963de24d8b?w=800&auto=format" alt="Natural Water" class="info-image">
+            <div class="info-content">
+                <h2>About Natural Water Sources</h2>
+                <p>Natural water sources include rivers, lakes, and springs. These sources are essential to ecosystems but may contain various natural minerals and potential contaminants.</p>
+                <ul class="water-facts">
+                    <li>✓ Rich in minerals</li>
+                    <li>✓ Ecosystem dependent</li>
+                    <li>✓ Seasonal variations</li>
+                    <li>✓ Natural filtration</li>
+                </ul>
+            </div>
+        </div>
+        <div class="analysis-form">
+            <div class="form-group">
+                <label for="patient_name">Patient Name</label>
+                <input type="text" id="patient_name" required>
+                <div class="water-line"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" required>
+                    <div class="water-line"></div>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div class="water-line"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="water_source">Water Source</label>
+                <input type="text" id="water_source" value="Natural Water Sources" readonly>
+                <div class="water-line"></div>
+            </div>
+            <div class="form-group">
+                <label for="specific_contaminant">Specific Contaminant</label>
+                <input type="text" id="specific_contaminant" required>
+                <div class="water-line"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="min_chemical">Minimum Chemical Level</label>
+                    <input type="number" id="min_chemical" required>
+                    <div class="water-line"></div>
+                </div>
+                <div class="form-group">
+                    <label for="max_chemical">Maximum Chemical Level</label>
+                    <input type="number" id="max_chemical" required>
+                    <div class="water-line"></div>
+                </div>
+            </div>
+            <button class="predict-btn" onclick="predictDisease()">
+                <span>Predict Disease</span>
+                <div class="ripple"></div>
+            </button>
+        </div>
+
+        <div id="results" class="results-section">
+            <h2>Analysis Results</h2>
+            <div class="results-grid">
+                <div class="result-item">
+                    <label>Patient Name:</label>
+                    <span id="result_name"></span>
+                </div>
+                <div class="result-item">
+                    <label>Age:</label>
+                    <span id="result_age"></span>
+                </div>
+                <div class="result-item">
+                    <label>Gender:</label>
+                    <span id="result_gender"></span>
+                </div>
+                <div class="result-item">
+                    <label>Water Source:</label>
+                    <span id="result_source"></span>
+                </div>
+                <div class="result-item predicted-disease">
+                    <label>Predicted Disease:</label>
+                    <span id="result_disease"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
