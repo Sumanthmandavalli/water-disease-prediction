@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stored Predictions</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center fade-in">Stored Predictions <i class="fas fa-database"></i></h2>
+
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered table-striped mt-3 shadow-lg animate-slide">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Water Source</th>
+                        <th>Contaminant</th>
+                        <th>Min Chemical</th>
+                        <th>Max Chemical</th>
+                        <th>Difference</th>
+                        <th>Predicted Disease</th>
+                    </tr>
+                </thead>
+                <tbody id="predictionsTable">
+                    <!-- Data will be loaded dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Back to Home Button -->
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-primary btn-lg shadow-sm scale-up">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+</html>

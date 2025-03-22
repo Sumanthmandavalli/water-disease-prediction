@@ -567,3 +567,69 @@ input.error, select.error {
 .btn:hover {
     animation: pulse 1.5s infinite;
 }
+
+
+.prediction-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.prediction-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.prediction-btn:hover {
+    background-color: #0056b3;
+}
+
+/* General Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+}
+
+/* Fade-in Animation */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+/* Table Styling */
+.table {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Slide-in Animation */
+.animate-slide {
+    transform: translateY(30px);
+    opacity: 0;
+    animation: slideIn 1s ease-in-out forwards;
+}
+
+/* Back to Home Button */
+.scale-up {
+    transition: transform 0.3s ease-in-out;
+}
+.scale-up:hover {
+    transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes slideIn {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}

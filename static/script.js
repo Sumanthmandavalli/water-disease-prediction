@@ -172,3 +172,76 @@ document.addEventListener('mousemove', (e) => {
         bubble.style.transform = `translate(${moveX}px, ${moveY}px)`;
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Retrieve last patient ID from localStorage or start from 1
+    let lastPatientId = localStorage.getItem("lastPatientId") || 0;
+    let newPatientId = parseInt(lastPatientId) + 1;
+
+    // Set the new Patient ID
+    document.getElementById("patient_id").value = "Patient " + newPatientId;
+
+    // Store the new Patient ID for the next entry
+    localStorage.setItem("lastPatientId", newPatientId);
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const tableRows = document.querySelectorAll("#predictionsTable tr");
+    
+    // Add fade-in effect for table rows
+    tableRows.forEach((row, index) => {
+        row.style.opacity = "0";
+        setTimeout(() => {
+            row.style.transition = "opacity 0.5s ease-in-out";
+            row.style.opacity = "1";
+        }, index * 200);
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("/predictions")
+        .then(response => {
+            console.log("Response status:", response.status); // Debugging
+            if (!response.ok) {
+                throw new Error("HTTP error! Status: " + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Fetched data:", data); // Debugging
+            const tableBody = document.getElementById("predictionsTable");
+
+            if (!tableBody) {
+                console.error("Table body element not found!");
+                return;
+            }
+
+            tableBody.innerHTML = ""; // Clear old data
+
+            if (!data.length) {
+                tableBody.innerHTML = "<tr><td colspan='10' class='text-center'>No records found.</td></tr>";
+                return;
+            }
+
+            data.forEach(prediction => {
+                const row = `<tr>
+                    <td>${prediction.id}</td>
+                    <td>${prediction.patient_name}</td>
+                    <td>${prediction.age}</td>
+                    <td>${prediction.gender}</td>
+                    <td>${prediction.water_source}</td>
+                    <td>${prediction.specific_contaminant}</td>
+                    <td>${prediction.min_chem}</td>
+                    <td>${prediction.max_chem}</td>
+                    <td>${prediction.chemical_diff}</td>
+                    <td>${prediction.predicted_disease}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching predictions:", error);
+            const tableBody = document.getElementById("predictionsTable");
+            if (tableBody) {
+                tableBody.innerHTML = "<tr><td colspan='10' class='text-center text-danger'>Error loading data.</td></tr>";
+            }
+        });
+});

@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1,
+        "patient_name": "sai",
+        "age": 20,
+        "gender": "Male",
+        "water_source": "Treated Water",
+        "contaminant_type": "Unknown",
+        "specific_contaminant": "Microplastics",
+        "min_chem": 10.0,
+        "max_chem": 50.0,
+        "chemical_diff": 40.0,
+        "predicted_disease": "Methemoglobinemia (\"Blue Baby Syndrome\")"
+    }
+]
