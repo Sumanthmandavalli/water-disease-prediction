@@ -125,13 +125,12 @@ def predict():
         print("Error:", str(e))
         return jsonify({"error": str(e)}), 500
 
-@app.route('/predictions', methods=['GET'])
+@app.route('/get_predictions', methods=['GET'])
 def get_predictions():
     try:
         predictions = Prediction.query.all()
-
         if not predictions:
-            return jsonify([]), 200  # Return an empty list if no data
+            return jsonify([]), 200  
 
         results = [{
             'id': p.id,
@@ -147,10 +146,12 @@ def get_predictions():
             'predicted_disease': p.predicted_disease
         } for p in predictions]
 
+        print("✅ Fetched predictions:", results)  # Debugging
+
         return jsonify(results), 200
 
     except Exception as e:
-        print("Error fetching predictions:", str(e))  # Log error
+        print("❌ Error fetching predictions:", str(e))  
         return jsonify({"error": str(e)}), 500
 
 

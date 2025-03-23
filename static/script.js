@@ -197,26 +197,22 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("/predictions")
+    fetch("/get_predictions")
         .then(response => {
-            console.log("Response status:", response.status); // Debugging
-            if (!response.ok) {
-                throw new Error("HTTP error! Status: " + response.status);
-            }
+            console.log("🔍 Fetching data... Status:", response.status);
             return response.json();
         })
         .then(data => {
-            console.log("Fetched data:", data); // Debugging
+            console.log("✅ Data received:", data);
             const tableBody = document.getElementById("predictionsTable");
-
             if (!tableBody) {
-                console.error("Table body element not found!");
+                console.error("❌ Table body element not found!");
                 return;
             }
 
             tableBody.innerHTML = ""; // Clear old data
 
-            if (!data.length) {
+            if (data.length === 0) {
                 tableBody.innerHTML = "<tr><td colspan='10' class='text-center'>No records found.</td></tr>";
                 return;
             }
@@ -238,10 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         })
         .catch(error => {
-            console.error("Error fetching predictions:", error);
-            const tableBody = document.getElementById("predictionsTable");
-            if (tableBody) {
-                tableBody.innerHTML = "<tr><td colspan='10' class='text-center text-danger'>Error loading data.</td></tr>";
-            }
+            console.error("❌ Error fetching predictions:", error);
+            alert("Error loading data. Check the console for details.");
         });
 });
